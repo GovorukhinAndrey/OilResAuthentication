@@ -51,3 +51,79 @@ textarea {
 	font-family: $default-font;
 	font-size: rem(16);
 }
+
+.link {
+  @include links;
+}
+
+.black {
+  color: $black;
+}
+
+.gray {
+  color: $gray;
+}
+
+.title {
+  font-size: 21px;
+  line-height: 25px;
+  text-align: center;
+  font-weight: normal;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  font-weight: normal;
+  margin: 30px 0 23px;
+}
+
+p {
+  font-size: 10px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  margin: 17px 0;
+}
+
+.form {
+  &__btn {
+    margin-top: 24px;
+  }
+
+  &__group-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.input-control {
+  margin-bottom: 20px;
+}
+
+.input-control-group,
+.button-group {
+  display: flex;
+
+  &__item {
+    margin-right: 20px;
+    margin-bottom: 20px;
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .input-control-group,
+  .button-group {
+    flex-direction: column;
+
+    &__item {
+      margin-right: 0;
+    }
+  }
+}
