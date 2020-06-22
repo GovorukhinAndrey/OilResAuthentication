@@ -1,12 +1,15 @@
 import Vue from 'vue';
+import VueMask from 'v-mask';
+import VueSwal from 'vue-swal';
+import VueTippy, { TippyComponent } from 'vue-tippy';
 import App from './App.vue';
 import store from './store';
 
-import Loader from '@/components/app/Loader';
-import Icon from '@/components/app/Icon';
+Vue.use(VueSwal);
+Vue.use(VueMask);
+Vue.use(VueTippy);
 
-Vue.component('Loader', Loader);
-Vue.component('Icon', Icon);
+Vue.component('tippy', TippyComponent);
 Vue.config.productionTip = false;
 
 new Vue({
