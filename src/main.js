@@ -5,6 +5,8 @@ import VueTippy, { TippyComponent } from 'vue-tippy';
 import App from './App.vue';
 import store from './store';
 
+import { firebaseAuth } from '@/firebase';
+
 Vue.use(VueSwal);
 Vue.use(VueMask);
 Vue.use(VueTippy);
@@ -12,7 +14,13 @@ Vue.use(VueTippy);
 Vue.component('tippy', TippyComponent);
 Vue.config.productionTip = false;
 
-new Vue({
-  store,
-  render: h => h(App),
-}).$mount('#app');
+let app;
+
+firebaseAuth.onAuthStateChanged(() => {
+  if (!app) {
+    app = new Vue({
+      store,
+      render: h => h(App),
+    }).$mount('#app');
+  }
+});
