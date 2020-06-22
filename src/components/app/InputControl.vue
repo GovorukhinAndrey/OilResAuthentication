@@ -85,6 +85,11 @@ export default {
     this.generatedId = nanoid();
     this.passwordIcon = this.innerType === 'password' ? true : false;
   },
+  watch: {
+    value(value) {
+      this.innerValue = value;
+    },
+  },
   computed: {
     passwordVisible() {
       return this.innerType === 'password' ? true : false;
