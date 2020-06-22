@@ -2,6 +2,7 @@
   text-decoration: none;
   color: inherit;
 }
+
 @mixin h-reset {
   margin-top: 0;
   margin-bottom: 0;
@@ -9,6 +10,7 @@
   font-size: inherit;
   line-height: inherit;
 }
+
 @mixin button-reset {
   border: 0;
   background-color: transparent;
@@ -17,11 +19,13 @@
   font-family: inherit;
   color: inherit;
 }
+
 @mixin list-reset {
   padding: 0;
   margin: 0;
   list-style: none;
 }
+
 @mixin absolute-center {
   position: absolute;
   top: 0;
@@ -61,15 +65,16 @@
   max-width: 100%;
   overflow: hidden;
 }
+
 // px to rem
 @function rem($pixels, $context: $mainFontSize) {
-@if (unitless($pixels)) {
-  $pixels: $pixels * 1px;
-}
-@if (unitless($context)) {
-  $context: $context * 1px;
-}
-@return $pixels / $context * 1rem;
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+  @return $pixels / $context * 1rem;
 }
 
 // size to one line
@@ -80,29 +85,29 @@ height: $height;
 
 // placeholder helper
 @mixin placeholder {
-::-webkit-input-placeholder {
-  @content;
-}
-:-moz-placeholder {
-  @content;
-}
-::-moz-placeholder {
-  @content;
-}
-:-ms-input-placeholder {
-  @content;
-}
+  ::-webkit-input-placeholder {
+    @content;
+  }
+  :-moz-placeholder {
+    @content;
+  }
+  ::-moz-placeholder {
+    @content;
+  }
+  :-ms-input-placeholder {
+    @content;
+  }
 }
 
 // fonts
 @mixin font($fname, $fstyle, $fweight, $furl) {
-@font-face {
-  font-family: $fname;
-  font-style: $fstyle;
-  font-weight: $fweight;
-  font-display: swap;
-  src: local($fname), url($furl) format('woff2');
-}
+  @font-face {
+    font-family: $fname;
+    font-style: $fstyle;
+    font-weight: $fweight;
+    font-display: swap;
+    src: local($fname), url($furl) format('woff2');
+  }
 }
 
 @function str-replace( $string, $search, $replace ) {
