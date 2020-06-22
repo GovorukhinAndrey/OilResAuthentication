@@ -30,6 +30,31 @@
   bottom: 0;
   margin: auto;
 }
+
+@mixin links {
+  @include a-reset;
+  @include button-reset;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 24px;
+  color: $black;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    transition: background-color $A;
+    background-color: $gray;
+    position: relative;
+    top: -3px;
+  }
+
+  &:hover::after {
+    background-color: transparent;
+  }
+}
+
 @mixin overflow-ellipsis {
   text-overflow: ellipsis;
   white-space: nowrap;
