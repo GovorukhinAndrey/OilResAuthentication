@@ -58,6 +58,7 @@ export default {
   &::after {
     animation-delay: 300ms;
   }
+
   // --white
   &--white {
     color: $white;
