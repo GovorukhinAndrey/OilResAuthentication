@@ -25,8 +25,8 @@
 export default {
   name: 'authentication',
   components: {
-    Login: () => import('@/components/Login'),
-    Registration: () => import('@/components/Registration'),
+    Login: () => import('@/components/authentication/Login'),
+    Registration: () => import('@/components/authentication/Registration'),
   },
   data: () => ({
     isHeader: true,
@@ -37,7 +37,7 @@ export default {
     currentTab: 'registration',
   }),
   computed: {
-    currentTabComponent: function() {
+    currentTabComponent() {
       return this.currentTab;
     },
   },
@@ -87,6 +87,7 @@ export default {
     background: $white;
     position: relative;
     top: -6px;
+    padding: 45px 32.5px 48px;
   }
 }
 </style>
