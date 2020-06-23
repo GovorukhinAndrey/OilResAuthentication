@@ -1,11 +1,26 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
+import auth from '@/store/auth';
+import info from '@/store/info';
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
+  state: {
+    error: null,
+  },
+  mutations: {
+    setError(state, error) {
+      state.error = error;
+    },
+    clearError(state) {
+      state.error = null;
+    },
+  },
   actions: {},
-  modules: {},
+  modules: {
+    auth,
+    info,
+  },
 });
