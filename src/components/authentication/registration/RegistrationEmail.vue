@@ -61,8 +61,8 @@
 </template>
 
 <script>
-import { email, required, minLength } from 'vuelidate/lib/validators';
 import { mapActions } from 'vuex';
+import { email, required, minLength } from 'vuelidate/lib/validators';
 
 export default {
   name: 'RegistrationEmail',
