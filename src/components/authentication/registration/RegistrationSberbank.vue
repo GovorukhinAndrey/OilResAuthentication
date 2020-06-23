@@ -15,7 +15,7 @@
       type="password"
     />
 
-    <ButtonControl isBlock size="large" type="secondary" loading class="form__btn">
+    <ButtonControl isBlock size="large" type="secondary" class="form__btn">
       Регистрация
     </ButtonControl>
   </form>
