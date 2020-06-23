@@ -44,7 +44,7 @@
 
 <script>
 export default {
-  name: 'login',
+  name: 'Registration',
   components: {
     ButtonControl: () => import('@/components/app/ButtonControl'),
     RegistrationEmail: () => import('@/components/authentication/registration/RegistrationEmail'),
