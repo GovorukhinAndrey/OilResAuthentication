@@ -31,14 +31,6 @@
         По E-mail
       </ButtonControl>
     </div>
-    <div class="button-group">
-      <ButtonControl class="button-group__item" isBlock type="google">GMAIL</ButtonControl>
-      <ButtonControl class="button-group__item" isBlock type="fb">FACEBOOK</ButtonControl>
-    </div>
-    <div class="button-group">
-      <ButtonControl class="button-group__item" isBlock type="vk">Вконтакте</ButtonControl>
-      <ButtonControl class="button-group__item" isBlock type="icloud">icloud </ButtonControl>
-    </div>
   </div>
 </template>
 

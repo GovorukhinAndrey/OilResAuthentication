@@ -17,6 +17,16 @@
       <keep-alive>
         <component v-bind:is="currentTabComponent" class="tab"></component>
       </keep-alive>
+      <div class="button-group">
+        <ButtonControl @click="signInGoogle" class="button-group__item" isBlock type="google"
+          >GMAIL</ButtonControl
+        >
+        <ButtonControl class="button-group__item" isBlock type="fb">FACEBOOK</ButtonControl>
+      </div>
+      <div class="button-group">
+        <ButtonControl class="button-group__item" isBlock type="vk">Вконтакте</ButtonControl>
+        <ButtonControl class="button-group__item" isBlock type="icloud">icloud </ButtonControl>
+      </div>
     </div>
   </div>
 </template>
@@ -27,6 +37,7 @@ export default {
   components: {
     Login: () => import('@/components/authentication/Login'),
     Registration: () => import('@/components/authentication/Registration'),
+    ButtonControl: () => import('@/components/app/ButtonControl'),
   },
   data: () => ({
     isHeader: true,
