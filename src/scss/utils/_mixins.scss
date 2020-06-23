@@ -1,0 +1,144 @@
+@mixin a-reset {
+  text-decoration: none;
+  color: inherit;
+}
+
+@mixin h-reset {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+@mixin button-reset {
+  border: 0;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  color: inherit;
+}
+
+@mixin list-reset {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+@mixin absolute-center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+@mixin links {
+  @include a-reset;
+  @include button-reset;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 24px;
+  color: $black;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    transition: background-color $A;
+    background-color: $gray;
+    position: relative;
+    top: -3px;
+  }
+
+  &:hover::after {
+    background-color: transparent;
+  }
+}
+
+@mixin overflow-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+// px to rem
+@function rem($pixels, $context: $mainFontSize) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+  @return $pixels / $context * 1rem;
+}
+
+// size to one line
+@mixin size($width, $height: $width) {
+width: $width;
+height: $height;
+}
+
+// placeholder helper
+@mixin placeholder {
+  ::-webkit-input-placeholder {
+    @content;
+  }
+  :-moz-placeholder {
+    @content;
+  }
+  ::-moz-placeholder {
+    @content;
+  }
+  :-ms-input-placeholder {
+    @content;
+  }
+}
+
+// fonts
+@mixin font($fname, $fstyle, $fweight, $furl) {
+  @font-face {
+    font-family: $fname;
+    font-style: $fstyle;
+    font-weight: $fweight;
+    font-display: swap;
+    src: local($fname), url($furl) format('woff2');
+  }
+}
+
+@function str-replace( $string, $search, $replace ) {
+
+	$index: str-index( $string, $search );
+
+	@if $index {
+
+		@return str-slice( $string, 1, $index - 1 ) + $replace + str_replace( str-slice( $string, $index + str-length( $search ) ), $search, $replace );
+	}
+
+	@return $string;
+}
+
+@function get-icon( $icon, $color: #fff ) {
+
+	@if 'color' != type-of( $color ) {
+
+		@warn 'The requested color - "' + $color + '" - was not recognized as a Sass color value.';
+		@return null;
+	}
+
+	@if map-has-key( $icons, $icon ) {
+
+		$icon:        map-get( $icons, $icon );
+		$placeholder: '%%COLOR%%';
+		$data-uri:    str-replace( url( $data-svg-prefix + $icon ), $placeholder, $color );
+
+		@return str-replace( $data-uri, '#', '%23' );
+	}
+
+	@warn 'The requested icon - "' + $icon + '" - is not defined in the $icons map.';
+	@return null;
+}
