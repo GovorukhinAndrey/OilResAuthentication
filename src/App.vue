@@ -33,7 +33,7 @@ export default {
 
 <style lang="scss">
 #app {
-  background-color: #bbb;
+  background-color: $bg-color;
   display: flex;
   min-height: 100vh;
   padding: 0 15px;
