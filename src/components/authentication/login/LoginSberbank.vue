@@ -20,7 +20,7 @@
       <ButtonControl type="link">Забыли пароль?</ButtonControl>
     </div>
 
-    <ButtonControl isBlock size="large" type="secondary" loading class="form__btn">
+    <ButtonControl isBlock size="large" type="secondary" class="form__btn">
       Войти
     </ButtonControl>
   </form>
@@ -33,6 +33,9 @@ export default {
     InputControl: () => import('@/components/app/InputControl'),
     ButtonControl: () => import('@/components/app/ButtonControl'),
   },
+  data: () => ({
+    isRemember: false,
+  }),
 };
 </script>
 
