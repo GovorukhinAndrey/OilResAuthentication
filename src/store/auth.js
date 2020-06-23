@@ -29,6 +29,15 @@ export default {
       const user = firebaseAuth.currentUser;
       return user ? user.uid : null;
     },
+    async loginForEmail({ commit }, { email, password }) {
+      try {
+        await firebaseAuth.signInWithEmailAndPassword(email, password);
+        commit('setAuthorized', true);
+      } catch (error) {
+        commit('setError', error, { root: true });
+        throw error.message;
+      }
+    },
     async logout({ commit }) {
       await firebaseAuth.signOut();
       commit('setAuthorized', false);
