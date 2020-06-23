@@ -25,6 +25,30 @@ export default {
         throw error.message;
       }
     },
+    async getCodePhone({ commit }, phone) {
+      const code = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
+      console.log(phone, code);
+      try {
+        // await firebaseDb.ref(`/users/EmFoIyzFU0WQIqgiGyFRXHxohqL2/info`).update({
+        //   codePhone: code,
+        //   phone,
+        // });
+        console.log('efafasf');
+        return code;
+      } catch (error) {
+        commit('setError', error, { root: true });
+        throw error.message;
+      }
+    },
+    async registerForPhone({ commit }) {
+      try {
+        await firebaseAuth.signInWithEmailAndPassword('test-phone@gmail.com', '123456');
+        commit('setAuthorized', true);
+      } catch (error) {
+        commit('setError', error, { root: true });
+        throw error.message;
+      }
+    },
     async signInGoogle({ dispatch, commit }) {
       try {
         const result = await firebaseAuth.signInWithPopup(provider);

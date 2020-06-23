@@ -15,7 +15,11 @@
     </div>
     <div class="authentication__body">
       <keep-alive>
-        <component v-bind:is="currentTabComponent" class="tab"></component>
+        <component
+          @code-check="isHeader = $event"
+          v-bind:is="currentTabComponent"
+          class="tab"
+        ></component>
       </keep-alive>
       <div class="button-group">
         <ButtonControl @click="signInGoogle" class="button-group__item" isBlock type="google">

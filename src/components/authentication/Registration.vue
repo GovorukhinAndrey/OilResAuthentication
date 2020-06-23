@@ -1,9 +1,15 @@
 <template>
   <div class="Registration">
     <keep-alive>
-      <component v-bind:is="currentRegistrationComponent"></component>
+      <component
+        @code-check="changeRegistrationComponent('code-check')"
+        v-bind:is="currentRegistrationComponent"
+      ></component>
     </keep-alive>
-    <p>Создавая аккаунт, вы соглашаетесь с правилами платформы и обработкой персональных данных</p>
+
+    <p v-if="currentRegistration !== 'code-check'">
+      Создавая аккаунт, вы соглашаетесь с правилами платформы и обработкой персональных данных
+    </p>
     <h3 class="subtitle">Другие способы регистрации</h3>
     <div class="button-group">
       <ButtonControl
@@ -15,7 +21,7 @@
         Регистраия по Сбербанк ID
       </ButtonControl>
       <ButtonControl
-        v-if="currentRegistration !== 'registration-phone'"
+        v-if="visiblePhoneComponent"
         @click="changeRegistrationComponent('registration-phone')"
         isBlock
         class="button-group__item"
@@ -43,6 +49,7 @@ export default {
     RegistrationSberbank: () =>
       import('@/components/authentication/registration/RegistrationSberbank'),
     RegistrationPhone: () => import('@/components/authentication/registration/RegistrationPhone'),
+    CodeCheck: () => import('@/components/authentication/CodeCheck'),
   },
   data: () => ({
     currentRegistration: 'registration-email',
@@ -50,6 +57,21 @@ export default {
   computed: {
     currentRegistrationComponent() {
       return this.currentRegistration;
+    },
+    visiblePhoneComponent() {
+      return (
+        this.currentRegistration !== 'registration-phone' &&
+        this.currentRegistration !== 'code-check'
+      );
+    },
+  },
+  watch: {
+    currentRegistration(value) {
+      if (value === 'code-check') {
+        this.$emit('code-check', false);
+      } else {
+        this.$emit('code-check', true);
+      }
     },
   },
   methods: {
