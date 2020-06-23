@@ -18,9 +18,9 @@
         <component v-bind:is="currentTabComponent" class="tab"></component>
       </keep-alive>
       <div class="button-group">
-        <ButtonControl @click="signInGoogle" class="button-group__item" isBlock type="google"
-          >GMAIL</ButtonControl
-        >
+        <ButtonControl @click="signInGoogle" class="button-group__item" isBlock type="google">
+          GMAIL
+        </ButtonControl>
         <ButtonControl class="button-group__item" isBlock type="fb">FACEBOOK</ButtonControl>
       </div>
       <div class="button-group">
@@ -50,6 +50,11 @@ export default {
   computed: {
     currentTabComponent() {
       return this.currentTab;
+    },
+  },
+  methods: {
+    signInGoogle() {
+      this.$store.dispatch('auth/signInGoogle');
     },
   },
 };

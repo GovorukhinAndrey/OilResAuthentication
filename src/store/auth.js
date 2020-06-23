@@ -1,4 +1,4 @@
-import { firebaseAuth, firebaseDb } from '@/firebase';
+import { firebaseAuth, firebaseDb, provider } from '@/firebase';
 export default {
   namespaced: true,
   state: {
@@ -18,6 +18,20 @@ export default {
         await firebaseDb.ref(`/users/${uid}/info`).set({
           fullName,
           phone,
+        });
+        commit('setAuthorized', true);
+      } catch (error) {
+        commit('setError', error, { root: true });
+        throw error.message;
+      }
+    },
+    async signInGoogle({ dispatch, commit }) {
+      try {
+        const result = await firebaseAuth.signInWithPopup(provider);
+        const user = result.user;
+        const uid = await dispatch('getUid');
+        await firebaseDb.ref(`/users/${uid}/info`).set({
+          fullName: user.displayName,
         });
         commit('setAuthorized', true);
       } catch (error) {
